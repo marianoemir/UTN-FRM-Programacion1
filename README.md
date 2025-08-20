@@ -4,7 +4,7 @@ Tecnicatura Universitaria en Programación
 
 ✨ Estudiante
 Nombre: Chirino Fraccaro, Mariano Emir.
-Comisión: C2.
+Comisión: 1pro1.
 
 📂 Descripción del Repositorio
 Este repositorio almacena todas los trabajos prácticos realizados durante la cursada de Programación 1.
