@@ -31,8 +31,8 @@ print("")
 #Ejercico 4
 
 animales = ["perro", "gato", "conejo", "pez"]
-animales[-3] = "loro"
-animales[-1] = "oso"
+animales[1] = "loro"
+animales[3] = "oso"
 
 print(animales)
 
@@ -60,13 +60,15 @@ numerosdel10al30 = list(range(10, 31, 5))
 
 print(numerosdel10al30[0], numerosdel10al30[1])
 
-print("")
+print()
 
 #Ejercicio 7
 
-autos = ["sedan", "amarok", "bora", "gol"]
+autos = ["sedan", "polo", "suran", "gol"]
+autos[1] = "amarok"
+autos[2] = "bora"
 
-print()
+print(autos)
 
 #Ejercicio 8
 
@@ -75,5 +77,25 @@ dobles.append(5 * 2)
 dobles.append(10 * 2)
 dobles.append(15 * 2)
 
-print
+print(dobles)
 
+print("")
+
+#Ejercicio 9
+
+compras = [["pan", "leche"], ["arroz", "fideos", "salsa"],
+["agua"]]
+
+compras[2].append("jugo")
+compras[1][1] = "tallarines"
+compras[0].remove("pan")
+
+print(compras)
+
+print("")
+
+#Ejercicio 10
+
+lista_anidada = [15 ,True, [25.5, 57.9, 30.6], False]
+
+print(lista_anidada)
