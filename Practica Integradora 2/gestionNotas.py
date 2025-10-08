@@ -1,4 +1,4 @@
-alumnos = {
+alumnos = {     
     60902: "Rodolfo Fernandez",
     61654: "Luis Gomez",
     61852: "Andrea Pereira",
@@ -11,9 +11,21 @@ notasFinales = []
 
 
 def pedir_nota():
-
     while True:
-        nota = float(input("Ingrese nota (0 a 10): "))
+        entrada = input("Ingrese nota (0 a 10): ")
+
+        
+        if entrada.strip() == "":
+            print("Error: no puede dejar vacío. Intente otra vez.")
+            continue
+
+        
+        if not (entrada.replace(".", "", 1).isdigit()):
+            print("Error: debe ingresar un número válido.")
+            continue
+
+        nota = float(entrada)
+
         if 0 <= nota <= 10:
             return nota
         else:
@@ -66,14 +78,17 @@ def main():
         print("Promedio general de", nombre, ":", prom)
         notasFinales.append([nombre, prom])
 
-    mejor = notasFinales[0]
-    for nf in notasFinales:
-        if nf[1] > mejor[1]:
-            mejor = nf
+    mejor_prom = max(nf[1] for nf in notasFinales)
+
+    mejores_alumnos = [nf for nf in notasFinales if nf[1] == mejor_prom]
+
     print("\n=== RESULTADO FINAL ===")
     for nf in notasFinales:
         print(nf[0], "->", nf[1])
-    print("\nEl mejor promedio es de", mejor[0], "con", mejor[1])
+
+    print("\nEl/los mejor(es) promedio(s):")
+    for nf in mejores_alumnos:
+        print("-", nf[0], "con", nf[1])
 
 
 main()
