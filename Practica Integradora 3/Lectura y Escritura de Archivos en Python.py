@@ -1,4 +1,3 @@
-
 def leer_alumnos():
     alumnos = []
     try:
@@ -7,12 +6,15 @@ def leer_alumnos():
                 partes = linea.strip().split(";")
                 if len(partes) == 4:
                     nombre, apellido, legajo, nota = partes
-                    alumnos.append({
-                        "nombre": nombre,
-                        "apellido": apellido,
-                        "legajo": legajo,
-                        "nota": float(nota)
-                    })
+                    try:
+                        alumnos.append({
+                            "nombre": nombre,
+                            "apellido": apellido,
+                            "legajo": legajo,
+                            "nota": float(nota)
+                        })
+                    except ValueError:
+                        print(f"Línea con nota inválida: {linea.strip()}")
     except FileNotFoundError:
         with open("alumnos.txt", "w", encoding="utf-8") as f:
             pass
@@ -52,15 +54,16 @@ def agregar_alumno(alumnos, diccionario):
         return
 
     if validar_existe_alumno(diccionario, legajo):
-        print(f"El legajo {legajo} ya existe en el archivo alumnos.txt, no se permite su escritura.")
+        print(f"El legajo {legajo} ya existe en el archivo alumnos.txt, no se permite su escritura")
         return
 
     nota_str = input("Nota promedio (1 a 10): ").strip()
-    if not nota_str.replace(".", "", 1).isdigit():
+    try:
+        nota = float(nota_str.replace(",", "."))
+    except ValueError:
         print("La nota debe ser un número.")
         return
 
-    nota = float(nota_str)
     if nota < 1 or nota > 10:
         print("La nota debe estar entre 1 y 10.")
         return
@@ -70,8 +73,13 @@ def agregar_alumno(alumnos, diccionario):
     diccionario[legajo] = alumno
 
     try:
+        if nota.is_integer():
+            nota_texto = str(int(nota))
+        else:
+            nota_texto = str(nota)
+
         with open("alumnos.txt", "a", encoding="utf-8") as f:
-            f.write(f"{nombre};{apellido};{legajo};{nota}\n")
+            f.write(f"{nombre};{apellido};{legajo};{nota_texto}\n")
         print("Alumno agregado correctamente.")
     except Exception as e:
         print("Error al escribir el archivo:", e)
@@ -82,7 +90,12 @@ def guardar_aprobados(alumnos):
     try:
         with open("aprobados.txt", "w", encoding="utf-8") as f:
             for a in aprobados:
-                f.write(f"{a['nombre']};{a['apellido']};{a['legajo']};{a['nota']}\n")
+                if a["nota"].is_integer():
+                    nota_texto = str(int(a["nota"]))
+                else:
+                    nota_texto = str(a["nota"])
+                f.write(f"{a['nombre']};{a['apellido']};{a['legajo']};{nota_texto}\n")
+
         print("---- Alumnos Aprobados ----")
         for a in aprobados:
             print(f"{a['nombre']} {a['apellido']} - Nota: {a['nota']}")
