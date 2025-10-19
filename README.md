@@ -1,10 +1,10 @@
 💻 Programación 1
-Tecnicatura Universitaria en Programación
-📍 Universidad Tecnológica Nacional
+Tecnicatura Universitaria en Programación.
+📍 UTN Facultad Regional Mendoza.
 
 ✨ Estudiante
 Nombre: Chirino Fraccaro, Mariano Emir.
-Comisión: 1pro1.
+Comisión: 1.
 
 📂 Descripción del Repositorio
 Este repositorio almacena todas los trabajos prácticos realizados durante la cursada de Programación 1.
